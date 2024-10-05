@@ -8,21 +8,24 @@ ROWS = 3
 COLS = 3
 
 symbol_count = {
-    "A": 2,
-    "B": 4,
-    "C": 6,
-    "D": 8
-}
-symbol_value = {
-    "A": 5,
-    "B": 4,
-    "C": 3,
-    "D": 2
+    "777": 2,
+    "BAR": 3,
+    "Cherry": 4,
+    "Bell": 6,
+    "Orange": 8
 }
 
-def check_winnings(columns,lines,bet,values):
-    winnings =0
-    winning_lines =[]
+symbol_value = {
+    "777": 10,
+    "BAR": 8,
+    "Cherry": 5,
+    "Bell": 3,
+    "Orange": 2
+}
+
+def check_winnings(columns, lines, bet, values):
+    winnings = 0
+    winning_lines = []
     for line in range(lines):
         symbol = columns[0][line]
         for column in columns:
@@ -31,23 +34,23 @@ def check_winnings(columns,lines,bet,values):
                 break
         else:
             winnings += values[symbol] * bet
-            winning_lines.append(line +1)
+            winning_lines.append(line + 1)
     return winnings, winning_lines        
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, count in symbols.items():
-        all_symbols.extend([symbol] * count)  # Add each symbol count times to the list
+        all_symbols.extend([symbol] * count)
 
-    columns = []  # Initialize empty columns list
+    columns = []
     for _ in range(cols):
         column = []
-        current_symbols = all_symbols[:]  # Copy all symbols for this column
+        current_symbols = all_symbols[:]
         for _ in range(rows):
-            value = random.choice(current_symbols)  # Randomly choose a symbol
-            current_symbols.remove(value)  # Remove the chosen symbol from available
-            column.append(value)  # Add the symbol to the column
-        columns.append(column)  # Add the column to columns
+            value = random.choice(current_symbols)
+            current_symbols.remove(value)
+            column.append(value)
+        columns.append(column)
 
     return columns
 
@@ -55,9 +58,9 @@ def print_slot_machine(columns):
     for row in range(len(columns[0])):
         for i, column in enumerate(columns):
             if i != len(columns) - 1:
-                print(column[row], end=" | ")  # Print symbol followed by separator
+                print(column[row], end=" | ")
             else:
-                print(column[row])  # No separator after the last column
+                print(column[row])
 
 def deposit():
     while True:
@@ -110,13 +113,14 @@ def spin(balance):
         else:
             print(f"You are betting ${bet} on {lines} lines.")
             print(f"Your total bet is: ${total_bet}.")
-            balance -= total_bet  # Deduct the total bet from the balance
+            balance -= total_bet
             slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
+            print("\n--- SLOT MACHINE ---")
             print_slot_machine(slots)
-            winnings,winning_lines = check_winnings(slots,lines,bet,symbol_value)
-            print(f"You won ${winnings}.")
+            winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
+            print(f"\nYou won ${winnings}!")
             if winning_lines:
-                print(f"You won on lines:", *winning_lines)
+                print(f"Winning on lines:", *winning_lines)
             else:
                 print("No winning lines.")
             return winnings - total_bet
@@ -126,12 +130,9 @@ def main():
     while True:
         print(f"Current balance is ${balance}")
         answer = input("Press enter to play (q to quit). ").lower()
-        if answer =="q":
+        if answer == "q":
             break
-        balance +=spin(balance)
+        balance += spin(balance)
     print(f"You left with ${balance}")
-
-
-
 
 main()
