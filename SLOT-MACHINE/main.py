@@ -9,18 +9,18 @@ COLS = 3
 
 symbol_count = {
     "777": 2,
-    "BAR": 3,
-    "Cherry": 4,
-    "Bell": 6,
-    "Orange": 8
+    "BAR": 5,
+    "ABC": 7,
+    "XYZ": 4,
+    "A2B": 10
 }
 
 symbol_value = {
     "777": 10,
     "BAR": 8,
-    "Cherry": 5,
-    "Bell": 3,
-    "Orange": 2
+    "ABC": 5,
+    "XYZ": 3,
+    "A2B": 2
 }
 
 def check_winnings(columns, lines, bet, values):
