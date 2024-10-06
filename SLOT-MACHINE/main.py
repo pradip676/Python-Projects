@@ -115,7 +115,8 @@ def spin(balance):
             print(f"Your total bet is: ${total_bet}.")
             balance -= total_bet
             slots = get_slot_machine_spin(ROWS, COLS, symbol_count)
-            print("\n--- SLOT MACHINE ---")
+            print("\n--SLOT MACHINE--")
+            print()
             print_slot_machine(slots)
             winnings, winning_lines = check_winnings(slots, lines, bet, symbol_value)
             print(f"\nYou won ${winnings}!")
