@@ -22,7 +22,19 @@ while True:
     computer_pick = options[random_number]
     print("Computer picked", computer_pick + ".")
 
-    if user_input == "rock" and computer_pick == "scissors":
+    if user_input == "rock" and computer_pick == "rock":
+        print("Match Draw!")
+        continue
+
+    elif user_input == "scissors" and computer_pick == "scissors":
+        print("Match Draw!")
+        continue
+
+    elif user_input == "paper" and computer_pick == "paper":
+        print("Match Draw!")
+        continue
+
+    elif user_input == "rock" and computer_pick == "scissors":
         print("You won!")
         user_wins +=1
         continue
